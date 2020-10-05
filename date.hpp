@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-class Date {
+class Date {//git test
     public:
     Date();
     bool isValid (int input_month, int input_date);//check if the date is valid
