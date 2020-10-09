@@ -11,7 +11,6 @@ TimeRange::TimeRange() {
 	endMinute = 30;
 }
 
-// hellloooooo
 bool TimeRange::isValid(int beginningHour, int beginningMinute, int endingHour, int endingMinute)
 {
 	
