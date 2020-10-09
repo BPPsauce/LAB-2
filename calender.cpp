@@ -91,7 +91,7 @@ void calendar::printcalendar(int input_year){
 	return; 
 }
 
-bool calendar::book(Date date, TimeRange time){
+bool calendar::book(Date date, TimeRange time){//test
 }
 
 bool calendar::query(Date date, TimeRange time){
