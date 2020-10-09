@@ -1,6 +1,8 @@
 //header file time.hpp to declare your class
 #include <iostream>
 using namespace std;
+#ifndef TIMERANGE
+#define TIMERANGE
 class TimeRange {
 public:
 	
@@ -29,3 +31,4 @@ private:
 
 };
 
+#endif // TIMERANGE

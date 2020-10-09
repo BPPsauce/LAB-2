@@ -1,7 +1,8 @@
 //header file date.hpp to declare your class
 #include <iostream>
 using namespace std;
-
+#ifndef DATE
+#define DATE
 class Date {//git push test
     public:
     Date();
@@ -40,3 +41,4 @@ class Date {//git push test
   int end_mins;
   
 };
+#endif //DATE
