@@ -29,11 +29,11 @@ class Date {//git push test
     int getStartTime_min();
     int getEndTime_hr();
     int getEndTime_min();
-    
+    bool appointed[48];//bool array for appointed time
+
   private:
   int month;
   int day;
-  bool appointed[48];//bool array for appointed time
   int start_hr;
   int start_min;
   int end_hr;
