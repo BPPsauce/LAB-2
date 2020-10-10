@@ -110,22 +110,23 @@ bool calendar::book(Date date, TimeRange time){//test
     int print_index = 0;
 
 	if(date.isValid(date.getMonth(), date.getDate()) == 0){
-		cout<<"appointment can not be booked! Wrong month/date is given!\n";
+		cout<<"Appointment cannot be booked! Wrong month/date is given!\n";
 		return false;
 	}
 	else if (time.isValid(time.getbeginHour(),time.getbeginMinute(),time.getendHour(),time.getendMinute() == 0)){
-		cout<<"appointment can not be booked! Wrong time is given!\n";
+		cout<<"Appointment cannot be booked! Wrong time is given!\n";
 		return false;
 	}
 	else if (date.appointed[print_index] = true){
-		cout<<"appointment is booked, please choice a differnt day or time slot!\n";
+		cout<<"Your desired appointment time slot is taken, please choice a different day or time slot!\n";
 		return false;
 	}
-	cout<<"appointment information recorded!\n";
+	cout<<"Appointment has been successfully booked!\n";
     for (print_index = start_index; print_index < end_index; print_index++){
         cout<<slot[print_index]<<"\n";
 		date.appointed[print_index] = true;
     }
+	cout << "This is the newly updated calendar: \n";
 	date.printFreeTimeSlots(date.getMonth(), date.getDate(),date.getStartTime_hr(),date.getStartTime_min(),date.getEndTime_hr(),date.getEndTime_min());
 	return true;
 }
@@ -137,12 +138,17 @@ bool calendar::query(Date date, TimeRange time){
 	int start_min = date.getStartTime_min();
 	int end_hr = date.getEndTime_hr();
 	int end_min = date.getEndTime_min();
+	if (time.isValid(start_hr, start_min, end_hr, end_min)==1 && date.isValid(month,day)==1){
 	cout<< "The appointed time slot on "<<month<<" "<<day<<"is\n";
 	for (int i = 1;i < 48; i++ ){//print everything when the appointed array is false
             if (date.appointed[i] == false){
                 cout<<slot[i]<<"\n";
             }
         }
+	}
+	
+
+	}
 }
 
 bool calendar::Delete(Date date, TimeRange time){
