@@ -123,7 +123,7 @@ bool calendar::book(Date date, TimeRange time){//test
 		cout<<"Your desired appointment time slot is taken, please choice a different day or time slot!\n";
 		return false;
 	}
-	cout<<"Appointment has been successfully booked!\n";
+	else cout<<"Appointment has been successfully booked!\n";
     for (print_index = start_index; print_index < end_index; print_index++){
         cout<<slot[print_index]<<"\n";
 		date.appointed[print_index] = true;
@@ -140,7 +140,7 @@ bool calendar::query(Date date, TimeRange time){
 	int start_min = date.getStartTime_min();
 	int end_hr = date.getEndTime_hr();
 	int end_min = date.getEndTime_min();
-	if (time.isValid(start_hr, start_min, end_hr, end_min)==1 && date.isValid(month,day)==1){
+
 	cout<< "The appointed time slot on "<<month<<" "<<day<<"is\n";
 	for (int i = 1;i < 48; i++ ){//print everything when the appointed array is false
             if (date.appointed[i] == false){
@@ -148,10 +148,6 @@ bool calendar::query(Date date, TimeRange time){
             }
         }
 	}
-	
-
-	}
-}
 
 bool calendar::Delete(Date date, TimeRange time){
 	int month = date.getMonth();

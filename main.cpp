@@ -8,7 +8,7 @@
 int main(){
 
 
-  
+  calendar calendarobject;
   Date User_data1;
   Date bookedAppts;
   TimeRange user_input;
@@ -174,12 +174,44 @@ switch (primaryInput)
   } while (user_input.isValid(user_start_hr, user_start_min, user_end_hr, user_end_min) == 0);//loop for keep asking the time if user enters invalid numbers
   
   // implement query function here, similar to time slots function but no printing, bool return value
-
+    calendarobject.query(User_data1, user_input);
   
   //Check status of appointment time slot
   break;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
   case 5:
+ while (1)
+  {
+  cout<<"Please enter the of month you would like to delete as a number (January = 1, December = 12): \n";
+  cout<<"Starting from 2020 fall Calender...(Sep - Dec)\n";
+  cin >> user_month;
+  cout<<"Please enter the date of the appointment would you like to delete: \n";
+  cin >> user_date;
+  if(User_data1.isValid(user_month,user_date) == 1){
+    break;
+  }
+  else
+  {
+    cout<<"Please ensure your information is correct!\n";
+    cout<<"------------------------------\n";
+  }
+}
+  do
+  {
+      cout << "Please enter the start hour of the appointment: ";
+      cin >> user_start_hr;
+      cout << "Please enter the starting minute of the appointment(increment of half an hour):" ;
+      cin >> user_start_min;
+      cout << "Please enter the ending hour of the appointment ";
+      cin >> user_end_hr;
+      cout << "Please enter the ending minute of the appointment (increment of half an hour): ";
+      cin >> user_end_min;
+  } while (user_input.isValid(user_start_hr, user_start_min, user_end_hr, user_end_min) == 0);//loop for keep asking the time if user enters invalid numbers
+   // use option 4 to first check if the appointment is booked, check validity then delete if it is valid
+   
+
+  calendarobject.Delete(User_data1, user_input);
+
   // delete a scheduled appointment
   break;
 
@@ -187,7 +219,7 @@ switch (primaryInput)
   User_data1.output(user_month,user_date);
   user_input.output(user_start_hr,user_start_min,user_end_hr,user_end_min);
   
-  cout<<"OK with your choice?\n";//confrimation 
+  cout<<"OK with your choice?\n";//confirmation 
   cout<<"Press '1' for yes\n";
   int answer;
   cin>>answer;

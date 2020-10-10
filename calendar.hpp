@@ -4,8 +4,9 @@
 using namespace std;
 
 class calendar{
-    calendar();
+    // this was private lol was such a headache --> calendar();
     public:
+    calendar();
     bool book(Date date, TimeRange time);
     bool query(Date date, TimeRange time);
     bool Delete(Date date, TimeRange time);
