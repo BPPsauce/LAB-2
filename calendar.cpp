@@ -109,6 +109,8 @@ bool calendar::book(Date date, TimeRange time){//test
     }
     int print_index = 0;
 
+
+
 	if(date.isValid(date.getMonth(), date.getDate()) == 0){
 		cout<<"Appointment cannot be booked! Wrong month/date is given!\n";
 		return false;

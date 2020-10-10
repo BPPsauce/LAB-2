@@ -1,5 +1,6 @@
 //time.cpp to implement your class
 #include "time.hpp"
+#include <iostream>
 
 //header file time.hpp to declare your class
 

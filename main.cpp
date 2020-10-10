@@ -7,6 +7,8 @@
 
 int main(){
 
+
+  
   Date User_data1;
   Date bookedAppts;
   TimeRange user_input;
@@ -35,7 +37,7 @@ switch (primaryInput)
   User_data1.output(user_month,user_date);
   user_input.output(user_start_hr,user_start_min,user_end_hr,user_end_min); */
  break;
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
  case 2: 
  // display all AVAILABLE appointments
 
@@ -62,17 +64,16 @@ switch (primaryInput)
   }
   break;
  break;
-
+////////////////////////////////////////////////////////////////////////
  case 3: 
   
-
   char user_choice_date;//loop for keep asking month if user enters invalid number
   while (1)
   {
   cout<<"Please enter the of month you would like to book as a number (January = 1, December = 12): \n";
   cout<<"Starting from 2020 fall Calender...(Sep - Dec)\n";
   cin >> user_month;
-  cout<<"Please enter the date would you like to book: \n";
+  cout<<"Please enter the date would you like to view/book: \n";
   cin >> user_date;
   if(User_data1.isValid(user_month,user_date) == 1){
     break;
@@ -141,12 +142,43 @@ switch (primaryInput)
     cout<<"Processing...\n";
   }
   break;
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   case 4:
+  
+  while (1)
+  {
+  cout<<"Please enter the of month you would like to view as a number (January = 1, December = 12): \n";
+  cout<<"Starting from 2020 fall Calender...(Sep - Dec)\n";
+  cin >> user_month;
+  cout<<"Please enter the date would you like to view: \n";
+  cin >> user_date;
+  if(User_data1.isValid(user_month,user_date) == 1){
+    break;
+  }
+  else
+  {
+    cout<<"Please ensure your information is correct!\n";
+    cout<<"------------------------------\n";
+  }
+}
+  do
+  {
+      cout << "Please enter the start hour of the appointment: ";
+      cin >> user_start_hr;
+      cout << "Please enter the starting minute of the appointment(increment of half an hour):" ;
+      cin >> user_start_min;
+      cout << "Please enter the ending hour of the appointment ";
+      cin >> user_end_hr;
+      cout << "Please enter the ending minute of the appointment (increment of half an hour): ";
+      cin >> user_end_min;
+  } while (user_input.isValid(user_start_hr, user_start_min, user_end_hr, user_end_min) == 0);//loop for keep asking the time if user enters invalid numbers
+  
+  // implement query function here, similar to time slots function but no printing, bool return value
 
+  
   //Check status of appointment time slot
   break;
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
   case 5:
   // delete a scheduled appointment
   break;
