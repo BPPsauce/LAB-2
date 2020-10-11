@@ -32,6 +32,8 @@ switch (primaryInput)
 
  case 1:
  // display all booked appointments
+
+ calendarobject.printcalendar(2020);
  
   /* cout<<"Appointment summary:\n"; //printing the summary of the appointment
   User_data1.output(user_month,user_date);
@@ -208,8 +210,6 @@ switch (primaryInput)
       cin >> user_end_min;
   } while (user_input.isValid(user_start_hr, user_start_min, user_end_hr, user_end_min) == 0);//loop for keep asking the time if user enters invalid numbers
    // use option 4 to first check if the appointment is booked, check validity then delete if it is valid
-   
-
   calendarobject.Delete(User_data1, user_input);
 
   // delete a scheduled appointment

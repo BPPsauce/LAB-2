@@ -180,7 +180,8 @@ bool calendar::Delete(Date date, TimeRange time){
 	return true;
 }
 
-void calendar::printFreeTimeSolts_days(Date date, TimeRange time){
+
+void calendar::printFreeTimeSlots_days(Date date, TimeRange time){
     int year = 2020;
 	printcalendar(year);
 
