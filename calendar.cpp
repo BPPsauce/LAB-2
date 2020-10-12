@@ -62,20 +62,29 @@ int calendar::numberOfDays (int input_month){
 void calendar::printcalendar(int input_year){
     printf ("		 Calendar - %d\n\n", input_year); 
 	int days; 
-	int current = dayNumber (1, 9, input_year); 
+	int current = dayNumber (1, 9, 2020); 
 	for (int i = 8; i < 12; i++) 
 	{ 
 		days = numberOfDays (i); 
 		printf("\n ------------%s-------------\n", 
 			getMonthName (i).c_str()); 
-		printf("  Sun  Mon  Tue  Wed  Thu  Fri  Sat\n"); 
+		printf("   Sun  Mon  Tue  Wed  Thu  Fri  Sat\n"); 
 		int k; 
-		for (k = 0; k < current; k++) 
-			printf("	 "); 
+		cout<<"   ";
+		for (k = 0; k < current; k++)
+			printf("    ");
 		for (int j = 1; j <= days; j++) 
-		{ 
-			if (i == 8 && j <= 8){
-        cout<<"    X";      }
+		{ int rst = j                                                     
+		+ ((153 * ((i+1) + 12 * ((14 - (i+1)) / 12) - 3) + 2) / 5) 
+		+ (365 * (2020 + 4800 - ((14 - (i+1)) / 12)))
+		+ ((2020 + 4800 - ((14 - (i+1)) / 12)) / 4)
+		- ((2020 + 4800 - ((14 - (i+1)) / 12)) / 100)
+		+ ((2020 + 4800 - ((14 - (i+1)) / 12)) / 400)
+		- 32045;
+		int result = (rst+1)%7;
+
+		if (i == 8 && j <= 7 || result == 0 || result ==6 ||i == 9 && j == 12 ||i == 10 && j == 11 ){
+        cout<<"   X ";      }
       else
       printf("%5d", j); 
 			if (++k > 6) 
