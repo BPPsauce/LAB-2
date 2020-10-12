@@ -11,7 +11,6 @@ int main(){
   Date User_data1;
   Date bookedAppts;
   TimeRange user_input;
-
   const string slot[48] ={//timeslot print
  "00:00 - 00:30","00:30 - 01:00","01:00 - 01:30","01:30 - 02:00","02:00 - 02:30"
 ,"02:30 - 03:00","03:00 - 03:30","03:30 - 04:00","04:00 - 04:30","04:30 - 05:00"
@@ -30,14 +29,21 @@ int main(){
   int user_end_min =0;
   int primaryInput;
   cout<<"Welcome to the appointment system\n";//nice
+
+  
   cout<<"Press 1 to view all booked appointments \n";
   cout<<"Press 2 to view all available appointment time slots that have not been booked \n";
   cout<<"Press 3 to book an appointment\n";
   cout<<"Press 4 to check the status of an an appointment time slot\n";
   cout<<"Press 5 to delete a booked appointment time\n";
-  cout<<"Prese 6 to see the whole available calendar\n";
+  cout<<"Press 6 to see the whole available calendar\n";
+  cout<<"Press 7 to exit our appointment system \n";
   cout<<"We will not be open on weekend or the holidays, please be aware of this.\n";
   cin >> primaryInput;
+  
+
+
+
 
 switch (primaryInput)
  {
@@ -49,38 +55,21 @@ switch (primaryInput)
             if (bookedAppts.appointed[i] == true){
                 cout<<slot[i]<<"\n";
             }
+
         }
  
   /* cout<<"Appointment summary:\n"; //printing the summary of the appointment
   User_data1.output(user_month,user_date);
   user_input.output(user_start_hr,user_start_min,user_end_hr,user_end_min); */
+  
  break;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
  case 2: 
  // display all AVAILABLE appointments
 
- char user_choice;
-  while (1)
-  {
-  cout<<"Would you like to see some infomation about this date?\n"<<"Enter 'A' to see appointed and free slots, 'N' for nothing\n";
-  cin>>user_choice;
-  if(user_choice == 'A'||user_choice == 'N'){
-    break;
-  }
-  else
-  {
-    cout<< "Sorry, please enter the right letter for the options\n";
-  }
-  }
-    
-  if(user_choice == 'A'){
     User_data1.printAppointedTimeSlots(user_month,user_date,user_start_hr,user_start_min,user_end_hr,user_end_min);
     User_data1.printFreeTimeSlots(user_month,user_date,user_start_hr,user_start_min,user_end_hr,user_end_min);
-  }
-  else if(user_choice == 'N'){
-    cout<<"Processing...\n";
-  }
-  break;
+ 
  break;
 ////////////////////////////////////////////////////////////////////////
  case 3: 
@@ -230,12 +219,21 @@ switch (primaryInput)
 
   // delete a scheduled appointment
   break;
-//////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
 case 6:
   int year = 2020;
   calendarobject.printFreeTimeSlots_days(User_data1, user_input);
 
   break;
+
+
+  
+case 7:
+
+cout <<"Thank you, we hope to see you again!\n";
+return 0;
+
+break;
 
   cout<<"Appointment summary:\n";//printing the summary of the appointment
   User_data1.output(user_month,user_date);
@@ -253,7 +251,6 @@ case 6:
   }
   return 0;
 }
-
 
 
 

@@ -168,7 +168,7 @@ bool calendar::query(Date date, TimeRange time){
 	cout<< "The appointed time slot on "<<month<<" "<<day<<"is\n";
 	for (int i = 1;i < 48; i++ ){//print everything when the appointed array is false
             if (date.appointed[i] == false){
-                cout<<slot[i]<<"\n";
+               cout<<slot[i]<<"\n";
             }
         }
 		return false; ///// DOESNT RETURN ANYTHING YET

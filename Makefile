@@ -6,8 +6,8 @@ run: main
 	./main
 
 #link main.o, time.o, and date.o to executable main
-main: main.o time.o date.o
-	g++ -g -o main main.o time.o date.o
+main: main.o time.o date.o calendar.o
+	g++ -g -o main main.o time.o date.o calendar.o
 
 #compile the main.cpp to main.o
 main.o: main.cpp
@@ -20,6 +20,10 @@ time.o: time.cpp
 #compile the date.cpp to date.o
 date.o: date.cpp
 	g++ -g -c date.cpp
+
+#compile the calendar.cpp to calendar.o
+calendar.o: calendar.cpp
+	g++ -g -c calendar.cpp
 
 #remove built files
 clean:
