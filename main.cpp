@@ -28,11 +28,13 @@ int main(){
   int user_end_hr =0;
   int user_end_min =0;
   int primaryInput;
-  cout<<"Welcome to the appointment system\n";//nice
-
+  int rpt;
   
-  cout<<"Press 1 to view all booked appointments \n";
-  cout<<"Press 2 to view all available appointment time slots that have not been booked \n";
+  cout<<"Welcome to the appointment system\n";//nice
+  
+do{
+  cout<<"Press 1 to view booked appointments \n";
+  cout<<"Press 2 to view available appointment time slots that have not been booked \n";
   cout<<"Press 3 to book an appointment\n";
   cout<<"Press 4 to check the status of an an appointment time slot\n";
   cout<<"Press 5 to delete a booked appointment time\n";
@@ -42,37 +44,38 @@ int main(){
   cin >> primaryInput;
   
 
-
-
-
-switch (primaryInput)
- {
+switch (primaryInput){
 
  case 1:
- // display all booked appointments
-
-  for (int i = 1;i < 48; i++ ){//print everything when the appointed array is false
-            if (bookedAppts.appointed[i] == true){
-                cout<<slot[i]<<"\n";
-            }
-
-        }
- 
-  /* cout<<"Appointment summary:\n"; //printing the summary of the appointment
-  User_data1.output(user_month,user_date);
-  user_input.output(user_start_hr,user_start_min,user_end_hr,user_end_min); */
+ int case1_month, case1_day;
+ cout <<"Hi, which day of the month do you want to check?\nEnter month then day\n";
+ cin >> case1_month;
+ cin >> case1_day;
+  User_data1.setMonth(case1_month);
+  User_data1.getMonth();
+  User_data1.setDate(case1_day);
+  User_data1.getDate();
+ //we can just use this printappointedtimeslot function to print out the appointed time slot
+ User_data1.printAppointedTimeSlots(case1_month,case1_day,user_start_hr,user_start_min,user_end_hr,user_end_min);
   
  break;
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
  case 2: 
  // display all AVAILABLE appointments
-
-    User_data1.printAppointedTimeSlots(user_month,user_date,user_start_hr,user_start_min,user_end_hr,user_end_min);
-    User_data1.printFreeTimeSlots(user_month,user_date,user_start_hr,user_start_min,user_end_hr,user_end_min);
+  int case2_month, case2_day;
+  cout <<"Hi, which day of the month do you want to check?\nEnter month then day\n";
+  cin >> case2_month;
+  cin >> case2_day;
+  User_data1.setMonth(case2_month);
+  User_data1.getMonth();
+  User_data1.setDate(case2_day);
+  User_data1.getDate();
+    User_data1.printFreeTimeSlots(case2_month,case2_day,user_start_hr,user_start_min,user_end_hr,user_end_min);
  
  break;
 ////////////////////////////////////////////////////////////////////////
- case 3: 
+ case 3: //to book an appointment
   
   char user_choice_date;//loop for keep asking month if user enters invalid number
   while (1)
@@ -91,7 +94,6 @@ switch (primaryInput)
     cout<<"------------------------------\n";
   }
 }
- 
   do
   {
       cout << "Please enter the start hour of your desired appointment: ";
@@ -150,7 +152,7 @@ switch (primaryInput)
   }
   break;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  case 4:
+  case 4://check the status of an an appointment time slot
   
   while (1)
   {
@@ -186,7 +188,7 @@ switch (primaryInput)
   //Check status of appointment time slot
   break;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-  case 5:
+  case 5://delete the selected appointed time slot in a day
  while (1)
   {
   cout<<"Please enter the of month you would like to delete as a number (January = 1, December = 12): \n";
@@ -220,20 +222,21 @@ switch (primaryInput)
   // delete a scheduled appointment
   break;
   //////////////////////////////////////////////////////////////////////////////
-case 6:
-  int year = 2020;
+case 6://to see the whole available calendar
   calendarobject.printFreeTimeSlots_days(User_data1, user_input);
 
   break;
-
-
-  
-case 7:
+////////////////////////////////////////////////////////////////////////////////
+case 7://exit 
 
 cout <<"Thank you, we hope to see you again!\n";
 return 0;
 
-break;
+break;}
+
+cout<<"Would you like to the main menu? 1 - YES, 0 - exit: ";
+cin>>rpt;
+} while (rpt == 1);
 
   cout<<"Appointment summary:\n";//printing the summary of the appointment
   User_data1.output(user_month,user_date);
@@ -250,8 +253,4 @@ break;
     cout<<"Sorry, try again next time :(\n";
   }
   return 0;
-}
-
-
-
 }
