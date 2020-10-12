@@ -12,6 +12,17 @@ int main(){
   Date User_data1;
   Date bookedAppts;
   TimeRange user_input;
+  const string slot[48] ={//timeslot print
+ "00:00 - 00:30","00:30 - 01:00","01:00 - 01:30","01:30 - 02:00","02:00 - 02:30"
+,"02:30 - 03:00","03:00 - 03:30","03:30 - 04:00","04:00 - 04:30","04:30 - 05:00"
+,"05:00 - 05:30","05:30 - 06:00","06:00 - 06:30","06:30 - 07:00","07:00 - 07:30"
+,"07:30 - 08:00","08:00 - 08:30","08:30 - 09:00","09:00 - 09:30","09:30 - 10:00"
+,"10:00 - 10:30","10:30 - 11:00","11:00 - 11:30","11:30 - 12:00","12:00 - 12:30"
+,"12:30 - 13:00","13:00 - 13:30","13:30 - 14:00","14:00 - 14:30","14:30 - 15:00"
+,"15:00 - 15:30","15:30 - 16:00","16:00 - 16:30","16:30 - 17:00","17:00 - 17:30"
+,"17:30 - 18:00","18:00 - 18:30","18:30 - 19:00","19:00 - 19:30","19:30 - 20:00"
+,"20:00 - 20:30","20:30 - 21:00","21:00 - 21:30","21:30 - 22:00","22:00 - 22:30"
+,"22:30 - 23:00","23:00 - 23:30","23:30 - 24:00"};
   int user_month, user_date = 0;
   int user_start_hr =0;
   int user_start_min =0;
@@ -33,7 +44,10 @@ switch (primaryInput)
  case 1:
  // display all booked appointments
 
- calendarobject.printcalendar(2020);
+if (time.isValid(time.getbeginHour(),time.getbeginMinute(),time.getendHour(),time.getendMinute() == 0)){
+		cout<<"Appointment cannot be booked! Wrong time is given!\n";
+		return false;
+	}
  
   /* cout<<"Appointment summary:\n"; //printing the summary of the appointment
   User_data1.output(user_month,user_date);
@@ -122,12 +136,12 @@ switch (primaryInput)
 	user_input.getendMinute();
 
 
-  char user_choice;
+  char user_answer;
   while (1)
   {
   cout<<"Would you like to see some infomation about this date?\n"<<"Enter 'A' to see appointed and free slots, 'N' for nothing\n";
-  cin>>user_choice;
-  if(user_choice == 'A'||user_choice == 'N'){
+  cin>>user_answer;
+  if(user_answer == 'A'||user_answer == 'N'){
     break;
   }
   else
@@ -136,11 +150,11 @@ switch (primaryInput)
   }
   }
     
-  if(user_choice == 'A'){
+  if(user_answer== 'A'){
     User_data1.printAppointedTimeSlots(user_month,user_date,user_start_hr,user_start_min,user_end_hr,user_end_min);
     User_data1.printFreeTimeSlots(user_month,user_date,user_start_hr,user_start_min,user_end_hr,user_end_min);
   }
-  else if(user_choice == 'N'){
+  else if(user_answer == 'N'){
     cout<<"Processing...\n";
   }
   break;
