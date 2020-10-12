@@ -44,10 +44,11 @@ switch (primaryInput)
  case 1:
  // display all booked appointments
 
-if (time.isValid(time.getbeginHour(),time.getbeginMinute(),time.getendHour(),time.getendMinute() == 0)){
-		cout<<"Appointment cannot be booked! Wrong time is given!\n";
-		return false;
-	}
+  for (int i = 1;i < 48; i++ ){//print everything when the appointed array is false
+            if (bookedAppts.appointed[i] == true){
+                cout<<slot[i]<<"\n";
+            }
+        }
  
   /* cout<<"Appointment summary:\n"; //printing the summary of the appointment
   User_data1.output(user_month,user_date);
