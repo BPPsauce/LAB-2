@@ -25,7 +25,6 @@ int getthedateindex(int selected_month, int selected_date){
 }
 
 int main(){
-
   calendar calendarobject;
   Date User_data1;
   Date bookedAppts;
@@ -55,13 +54,12 @@ int main(){
 
   cout<<"Welcome to the appointment system\n";
 do{
-  cout<<"Press 1 to view booked appointments \n";
-  cout<<"Press 2 to view available appointment time slots that have not been booked \n";
-  cout<<"Press 3 to book new appointments\n";
+  cout<<"Press 1 to view booked appointments \n";//working fine
+  cout<<"Press 2 to view available appointment time slots that have not been booked \n";//working fine
+  cout<<"Press 3 to book new appointments\n";//working fine
   cout<<"Press 4 to check the status of an an appointment time slot\n";
-  cout<<"Press 5 to delete a booked appointment time\n";
-  cout<<"Press 6 to see the whole available calendar\n";
-  cout<<"Press 7 to exit our appointment system \n";
+  cout<<"Press 5 to delete a booked appointment time\n";//working fine
+  cout<<"Press 6 to see the whole available calendar\n";//working fine
   cout<<"We will not be open on weekend or the holidays, please be aware of this.\n";
   cin >> primaryInput;
   
@@ -174,6 +172,7 @@ switch (primaryInput){
   cin >> user_month;
   cout<<"Please enter the date would you like to view: \n";
   cin >> user_date;
+  index = getthedateindex(user_month, user_date);
   user_data[index].setMonth(user_month);
   user_data[index].getMonth();
   user_data[index].setDate(user_date);
@@ -200,7 +199,7 @@ switch (primaryInput){
   } while (user_input.isValid(user_start_hr, user_start_min, user_end_hr, user_end_min) == 0);//loop for keep asking the time if user enters invalid numbers
   
   // implement query function here, similar to time slots function but no printing, bool return value
-    calendarobject.query(User_data1, user_input);
+    calendarobject.query(user_data[index], user_input);
   
   //Check status of appointment time slot
   break;
@@ -211,9 +210,23 @@ switch (primaryInput){
   cout<<"Please enter the of month you would like to delete as a number (January = 1, December = 12): \n";
   cout<<"Starting from 2020 fall Calender...(Sep - Dec)\n";
   cin >> user_month;
-  cout<<"Please enter the date of the appointment would you like to delete: \n";
-  cin >> user_date;
-  if(User_data1.isValid(user_month,user_date) == 1){
+
+  index = getthedateindex(user_month, user_date);
+  cout <<index;
+  user_data[index].setMonth(user_month);
+  user_data[index].getMonth();
+  user_data[index].setDate(user_date);
+  user_data[index].getDate();
+  user_data[index].setStartTime_hr(user_start_hr);
+  user_data[index].getStartTime_hr();
+  user_data[index].setStartTime_min(user_start_min);
+  user_data[index].getStartTime_min();
+  user_data[index].setEndTime_hr(user_end_hr);
+  user_data[index].getEndTime_hr();
+  user_data[index].setEndTime_min(user_end_min);
+  user_data[index].getEndTime_min();
+
+  if(user_data[index].isValid(user_month,user_date) == 1){
     break;
   }
   else
@@ -234,7 +247,8 @@ switch (primaryInput){
       cin >> user_end_min;
   } while (user_input.isValid(user_start_hr, user_start_min, user_end_hr, user_end_min) == 0);//loop for keep asking the time if user enters invalid numbers
    // use option 4 to first check if the appointment is booked, check validity then delete if it is valid
-  calendarobject.Delete(User_data1, user_input);
+  user_data[index].delelteappointment(user_month,user_date,user_start_hr,user_start_min,user_end_hr,user_end_min);
+  calendarobject.Delete(user_data[index], user_input);
 
   // delete a scheduled appointment
   break;
@@ -265,4 +279,3 @@ cin>>rpt;
   return 0;
 }//the end of the program
 
-////////////////////////////////////////////// EXTRA FUNCTION TO HELP THE MAIN///
