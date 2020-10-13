@@ -27,16 +27,10 @@ class calendar{
 
     
     private:
-    bool dayinnumber[91];//numbers of day, including weekends and holidays
-    //the first day to start is sep 8th to dec 8th
-
-
-
-    Date availableDates[91];
-    
+  
+     Date availableDates[91]; 
     Date date;
     TimeRange time;
-    
     int cal_month;
     int cal_day;
     int cal_year;
