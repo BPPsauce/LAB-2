@@ -57,7 +57,7 @@ do{
   cout<<"Press 1 to view booked appointments \n";//working fine
   cout<<"Press 2 to view available appointment time slots that have not been booked \n";//working fine
   cout<<"Press 3 to book new appointments\n";//working fine
-  cout<<"Press 4 to check the status of an an appointment time slot\n";
+  cout<<"Press 4 to check the status of an an appointment time slot\n";//working fine!! finally
   cout<<"Press 5 to delete a booked appointment time\n";//working fine
   cout<<"Press 6 to see the whole available calendar\n";//working fine
   cout<<"We will not be open on weekend or the holidays, please be aware of this.\n";
@@ -105,7 +105,7 @@ switch (primaryInput){
   while (1)
   {
   cout<<"Please enter the of month you would like to book as a number (January = 1, December = 12): \n";
-  cout<<"Starting from 2020 fall Calender...(Sep - Dec)\n";
+  cout<<"Be advised we are only open on weekdays between September 8,2020 and December 20,2020.  We are closed on weekends, Thanksgiving, and Remembrance Day.\n";
   cin >> user_month;
   cout<<"Please enter the date would you like to view/book: \n";
   cin >> user_date;
@@ -168,7 +168,7 @@ switch (primaryInput){
   while (1)
   {
   cout<<"Please enter the of month you would like to view as a number (January = 1, December = 12): \n";
-  cout<<"Starting from 2020 fall Calender...(Sep - Dec)\n";
+  cout<<"Be advised we are only open on weekdays between September 8,2020 and December 20,2020.  We are closed on weekends, Thanksgiving, and Remembrance Day.\n";
   cin >> user_month;
   cout<<"Please enter the date would you like to view: \n";
   cin >> user_date;
@@ -199,8 +199,14 @@ switch (primaryInput){
   } while (user_input.isValid(user_start_hr, user_start_min, user_end_hr, user_end_min) == 0);//loop for keep asking the time if user enters invalid numbers
   
   // implement query function here, similar to time slots function but no printing, bool return value
-    calendarobject.query(user_data[index], user_input);
-  
+   if(calendarobject.query(user_data[index], user_input)==false){
+    cout  << "The entered appointment time is available!\n";
+
+   }
+   else {
+     cout << "The entered appointment time is unavailable.\n";
+   }
+   
   //Check status of appointment time slot
   break;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -208,7 +214,7 @@ switch (primaryInput){
  while (1)
   {
   cout<<"Please enter the of month you would like to delete as a number (January = 1, December = 12): \n";
-  cout<<"Starting from 2020 fall Calender...(Sep - Dec)\n";
+  cout<<"Be advised we are only open on weekdays between September 8,2020 and December 20,2020.  We are closed on weekends, Thanksgiving, and Remembrance Day.\n";
   cin >> user_month;
 
   index = getthedateindex(user_month, user_date);

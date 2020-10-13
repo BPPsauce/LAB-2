@@ -155,24 +155,42 @@ bool calendar::book(Date date, TimeRange time){//test
 }
 
 bool calendar::query(Date date, TimeRange time){//not working yet
-	int month = date.getMonth();
+int month = date.getMonth();
 	int day = date.getDate();
 	int start_hr = date.getStartTime_hr();
 	int start_min = date.getStartTime_min();
 	int end_hr = date.getEndTime_hr();
 	int end_min = date.getEndTime_min();
-	cout<< "Slots on "<<month<<" "<<day<<"is\n";
-	for (int i = 1;i < 48; i++ ){//print everything when the appointed array is false
-            if (date.appointed[i]){//need sometime to tell if the day is booked or free
-               cout<<"all free!\n";//this is wrong, not working yet
-			   return false;
-            }
-			else{
-				cout<<"Someone has booked at least 1 time slot, please go back to the main menu to check\n";
-				return true;
-			}
-        }
+	int start_index = 0;
+    int end_index = 0;
+	Date dateObject;
+    if (start_min != 30){//calculation for the slot index number
+        start_index = (start_hr * 2);
+    }
+    else if (start_min == 30){
+        start_index = (start_hr * 2) + 1;
+    }
+    if (start_min == 30){
+        end_index = (start_hr * 2) + 1;
+    }
+    else if (end_min != 30){
+        end_index = end_hr * 2;
+    }
+    int print_index = 0;
+    for (print_index = start_index; print_index < end_index; print_index++){
+       if( dateObject.appointed[print_index] = false)
+	   {
+		   
+		   return false; 
+	   }
+    else {
+
+
+		return true;
 	}
+   
+	}
+}
 
 bool calendar::Delete(Date date, TimeRange time){
 	int month = date.getMonth();
@@ -198,12 +216,13 @@ bool calendar::Delete(Date date, TimeRange time){
     int print_index = 0;
     for (print_index = start_index; print_index < end_index; print_index++){
         if(date.appointed[print_index] = true){
-			cout<<"Something is Wrong! Failed deleting]\n";
+			cout<<"Something is Wrong! Failed deleting\n";
 			return false;
 		}
     }
 	cout<<"Appointment deleted!\n";
 	return true;
+
 }
 
 void calendar::DeleteApp(Date date, TimeRange time){
@@ -242,4 +261,5 @@ void calendar::printFreeTimeSlots_days(Date date, TimeRange time){
 	printcalendar(year);
 
 }
+
 
