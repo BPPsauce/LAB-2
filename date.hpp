@@ -11,8 +11,9 @@ class Date {//git push test
     bool isHoliday (int input_month, int input_date);// check if the date is holiday
     friend bool equal(Date date1, Date data2);//check if both dates are equal
     void output(int input_month, int input_date);//output the infomation of the input, general info
-    void printFreeTimeSlots (int input_month, int input_date, int time_start_hr, int time_start_min, int time_end_hr, int time_end_min);//print out the available time slots of the date
+    void printFreeTimeSlots (int input_month, int input_date);//print out the available time slots of the date
     void printAppointedTimeSlots (int input_month, int input_date, int time_start_hr, int time_start_min, int time_end_hr, int time_end_min);//print out the appointed slots
+    void printAppointedTimeSlots_clear(int input_month, int input_date);
     void errorprinting(int input_month, int input_date);//function that does error messages handing
     int GetWeekday(int input_month, int input_date);//formula for determining if the date is a weekend
     //set functions
