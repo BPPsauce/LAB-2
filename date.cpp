@@ -294,3 +294,41 @@ void Date::printAppointedTimeSlots_clear (int input_month, int input_date){
         }
         cout<<"-----------------------------------\n\n";
 }
+
+void Date::delelteappointment (int input_month, int input_date, int time_start_hr, int time_start_min, int time_end_hr, int time_end_min){
+    cout<<"Deleting... ";
+    if (input_month == 9){
+            cout<<"September ";
+        }
+        else if(input_month == 10){
+            cout<<"October ";
+        }
+        else if(input_month == 11){
+            cout<<"November ";
+        }
+        else if(input_month == 12){
+            cout<<"December ";
+        }
+    cout << input_date<<":\n";
+    int start_index = 0;
+    int end_index = 0;
+    if (time_start_min != 30){//calculation for the slot index number
+        start_index = (time_start_hr * 2);
+    }
+    else if (time_start_min == 30){
+        start_index = (time_start_hr * 2) + 1;
+    }
+    if (time_end_min == 30){
+        end_index = (time_end_hr * 2) + 1;
+    }
+    else if (time_end_min != 30){
+        end_index = time_end_hr * 2;
+    }
+    int print_index = 0;
+    for (print_index = start_index; print_index < end_index; print_index++){
+        cout<<slot[print_index]<<"\n";
+        appointed[print_index] = false;
+    }
+    cout <<"deleting.....";
+    cout<<"-----------------------------------\n\n";
+}
