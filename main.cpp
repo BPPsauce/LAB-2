@@ -77,7 +77,7 @@ switch (primaryInput){
  user_data[index].getMonth();
   user_data[index].setDate(case1_day);
   user_data[index].getDate();
- cout << index;
+ 
  user_data[index].printAppointedTimeSlots_clear(case1_month,case1_day);
  
  break;
@@ -90,7 +90,7 @@ switch (primaryInput){
   cin >> case2_month;
   cin >> case2_day;
   index = getthedateindex(case2_month, case2_day);
-  cout << index;
+  
   user_data[index].setMonth(case2_month);
   user_data[index].getMonth();
   user_data[index].setDate(case2_day);
@@ -110,7 +110,7 @@ switch (primaryInput){
   cout<<"Please enter the date would you like to view/book: \n";
   cin >> user_date;
   index = getthedateindex(user_month, user_date);
-  cout << index;
+  
   user_data[index].setMonth(user_month);
   user_data[index].getMonth();
   user_data[index].setDate(user_date);
@@ -218,7 +218,7 @@ switch (primaryInput){
   cin >> user_month;
 
   index = getthedateindex(user_month, user_date);
-  cout <<index;
+  
   user_data[index].setMonth(user_month);
   user_data[index].getMonth();
   user_data[index].setDate(user_date);
