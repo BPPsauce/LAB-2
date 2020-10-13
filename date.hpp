@@ -14,6 +14,7 @@ class Date {//git push test
     void printFreeTimeSlots (int input_month, int input_date);//print out the available time slots of the date
     void printAppointedTimeSlots (int input_month, int input_date, int time_start_hr, int time_start_min, int time_end_hr, int time_end_min);//print out the appointed slots
     void printAppointedTimeSlots_clear(int input_month, int input_date);
+    void delelteappointment (int input_month, int input_date, int time_start_hr, int time_start_min, int time_end_hr, int time_end_min);
     void errorprinting(int input_month, int input_date);//function that does error messages handing
     int GetWeekday(int input_month, int input_date);//formula for determining if the date is a weekend
     //set functions
