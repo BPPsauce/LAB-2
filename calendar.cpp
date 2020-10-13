@@ -115,7 +115,7 @@ const string slot[48] ={//timeslot print
 
 
 bool calendar::book(Date date, TimeRange time){//test
-	date.printFreeTimeSlots(date.getMonth(), date.getDate(),date.getStartTime_hr(),date.getStartTime_min(),date.getEndTime_hr(),date.getEndTime_min());
+	date.printFreeTimeSlots(date.getMonth(), date.getDate());
 	int start_index = 0;
     int end_index = 0;
     if (date.getStartTime_min() != 30){//calculation for the slot index number
@@ -152,7 +152,7 @@ bool calendar::book(Date date, TimeRange time){//test
 		date.appointed[print_index] = true;
     }
 	cout << "This is the newly updated calendar: \n";
-	date.printFreeTimeSlots(date.getMonth(), date.getDate(),date.getStartTime_hr(),date.getStartTime_min(),date.getEndTime_hr(),date.getEndTime_min());
+	date.printFreeTimeSlots(date.getMonth(), date.getDate());
 	return true;
 }
 
@@ -163,8 +163,6 @@ bool calendar::query(Date date, TimeRange time){
 	int start_min = date.getStartTime_min();
 	int end_hr = date.getEndTime_hr();
 	int end_min = date.getEndTime_min();
-
-	
 	cout<< "The appointed time slot on "<<month<<" "<<day<<"is\n";
 	for (int i = 1;i < 48; i++ ){//print everything when the appointed array is false
             if (date.appointed[i] == false){
