@@ -213,7 +213,7 @@ void Date::printAppointedTimeSlots (int input_month, int input_date, int time_st
     cout<<"-----------------------------------\n\n";
 }
 
-void Date::printFreeTimeSlots (int input_month, int input_date, int time_start_hr, int time_start_min, int time_end_hr, int time_end_min){
+void Date::printFreeTimeSlots (int input_month, int input_date){
     cout<<"Free time slot on ";
     if (input_month == 9){
             cout<<"September ";
@@ -270,4 +270,27 @@ void Date::errorprinting(int input_month, int input_date){//printing the error m
     if (input_month == 9 && input_date < 11){
     cout<<"School opens on Sep 11th!\n";
     }
+}
+
+void Date::printAppointedTimeSlots_clear (int input_month, int input_date){
+    cout<<"Appointed time slot on ";
+    if (input_month == 9){
+            cout<<"September ";
+        }
+        else if(input_month == 10){
+            cout<<"October ";
+        }
+        else if(input_month == 11){
+            cout<<"November ";
+        }
+        else if(input_month == 12){
+            cout<<"December ";
+        }
+        cout << input_date<<" is:\n";
+        for (int i = 1;i < 48; i++ ){//print everything when the appointed array is false
+            if (appointed[i] == true){
+                cout<<slot[i]<<"\n";
+            }
+        }
+        cout<<"-----------------------------------\n\n";
 }
