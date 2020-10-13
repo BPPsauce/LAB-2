@@ -5,12 +5,35 @@
 #include "date.hpp"
 #include "calendar.hpp"
 
+int getthedateindex(int selected_month, int selected_date){
+  int month = selected_month;
+  int date = selected_date;
+  int date_index = 0;
+  if (month == 9){
+   date_index = date - 1;
+  }
+  else if(month == 10){
+    date_index = 29 + date;
+  }
+  else if(month == 11){
+    date_index = 60 + date;
+  }
+  else if (month == 12){
+    date_index = 90 + date;
+  }
+  return date_index;
+}
+
 int main(){
 
   calendar calendarobject;
   Date User_data1;
   Date bookedAppts;
   TimeRange user_input;
+  Date user_data[121];
+  TimeRange user_time_data[121];
+  //sep 1st is [0], oct 1st = [30], nov 1st= [61], dec 1st = [91]
+  //sep 30st = [29], otc 31st = [60], nov 30th = [90], dec 30th = [121]
   const string slot[48] ={//timeslot print
  "00:00 - 00:30","00:30 - 01:00","01:00 - 01:30","01:30 - 02:00","02:00 - 02:30"
 ,"02:30 - 03:00","03:00 - 03:30","03:30 - 04:00","04:00 - 04:30","04:30 - 05:00"
@@ -29,13 +52,12 @@ int main(){
   int user_end_min =0;
   int primaryInput;
   int rpt;
-  
-  cout<<"Welcome to the appointment system\n";//nice
-  
+
+  cout<<"Welcome to the appointment system\n";
 do{
   cout<<"Press 1 to view booked appointments \n";
   cout<<"Press 2 to view available appointment time slots that have not been booked \n";
-  cout<<"Press 3 to book an appointment\n";
+  cout<<"Press 3 to book new appointments\n";
   cout<<"Press 4 to check the status of an an appointment time slot\n";
   cout<<"Press 5 to delete a booked appointment time\n";
   cout<<"Press 6 to see the whole available calendar\n";
@@ -43,21 +65,23 @@ do{
   cout<<"We will not be open on weekend or the holidays, please be aware of this.\n";
   cin >> primaryInput;
   
-
+  int index = getthedateindex(user_month, user_date);
+ 
 switch (primaryInput){
 
  case 1:
- int case1_month, case1_day;
+ int case1_month, case1_day, case1_start_hr, case1_start_min, case1_end_hr,case1_end_min;
  cout <<"Hi, which day of the month do you want to check?\nEnter month then day\n";
  cin >> case1_month;
  cin >> case1_day;
-  User_data1.setMonth(case1_month);
-  User_data1.getMonth();
-  User_data1.setDate(case1_day);
-  User_data1.getDate();
- //we can just use this printappointedtimeslot function to print out the appointed time slot
- User_data1.printAppointedTimeSlots(case1_month,case1_day,user_start_hr,user_start_min,user_end_hr,user_end_min);
-  
+ index = getthedateindex(case1_month, case1_day);
+ user_data[index].setMonth(case1_month);
+ user_data[index].getMonth();
+  user_data[index].setDate(case1_day);
+  user_data[index].getDate();
+ cout << index;
+ user_data[index].printAppointedTimeSlots_clear(case1_month,case1_day);
+ 
  break;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -67,11 +91,13 @@ switch (primaryInput){
   cout <<"Hi, which day of the month do you want to check?\nEnter month then day\n";
   cin >> case2_month;
   cin >> case2_day;
-  User_data1.setMonth(case2_month);
-  User_data1.getMonth();
-  User_data1.setDate(case2_day);
-  User_data1.getDate();
-    User_data1.printFreeTimeSlots(case2_month,case2_day,user_start_hr,user_start_min,user_end_hr,user_end_min);
+  index = getthedateindex(case2_month, case2_day);
+  cout << index;
+  user_data[index].setMonth(case2_month);
+  user_data[index].getMonth();
+  user_data[index].setDate(case2_day);
+  user_data[index].getDate();
+  user_data[index].printFreeTimeSlots(case2_month,case2_day);
  
  break;
 ////////////////////////////////////////////////////////////////////////
@@ -85,7 +111,14 @@ switch (primaryInput){
   cin >> user_month;
   cout<<"Please enter the date would you like to view/book: \n";
   cin >> user_date;
-  if(User_data1.isValid(user_month,user_date) == 1){
+  index = getthedateindex(user_month, user_date);
+  cout << index;
+  user_data[index].setMonth(user_month);
+  user_data[index].getMonth();
+  user_data[index].setDate(user_date);
+  user_data[index].getDate();
+
+  if(user_data[index].isValid(user_month,user_date) == 1){
     break;
   }
   else
@@ -106,19 +139,18 @@ switch (primaryInput){
       cin >> user_end_min;
   } while (user_input.isValid(user_start_hr, user_start_min, user_end_hr, user_end_min) == 0);//loop for keep asking the time if user enters invalid numbers
 
-  //set and get
-  User_data1.setMonth(user_month);
-  User_data1.getMonth();
-  User_data1.setDate(user_date);
-  User_data1.getDate();
-  User_data1.setStartTime_hr(user_start_hr);
-  User_data1.getStartTime_hr();
-  User_data1.setStartTime_min(user_start_min);
-  User_data1.getStartTime_min();
-  User_data1.setEndTime_hr(user_end_hr);
-  User_data1.getEndTime_hr();
-  User_data1.setEndTime_min(user_end_min);
-  User_data1.getEndTime_min();
+  user_data[index].setMonth(user_month);
+  user_data[index].getMonth();
+  user_data[index].setDate(user_date);
+  user_data[index].getDate();
+  user_data[index].setStartTime_hr(user_start_hr);
+  user_data[index].getStartTime_hr();
+  user_data[index].setStartTime_min(user_start_min);
+  user_data[index].getStartTime_min();
+  user_data[index].setEndTime_hr(user_end_hr);
+  user_data[index].getEndTime_hr();
+  user_data[index].setEndTime_min(user_end_min);
+  user_data[index].getEndTime_min();
   user_input.setbeginHour(user_start_hr);
 	user_input.getbeginHour();
 	user_input.setbeginMinute(user_start_min);
@@ -128,28 +160,9 @@ switch (primaryInput){
 	user_input.setendMinute(user_end_min);
 	user_input.getendMinute();
 
-
-  char user_answer;
-  while (1)
-  {
-  cout<<"Would you like to see some infomation about this date?\n"<<"Enter 'A' to see appointed and free slots, 'N' for nothing\n";
-  cin>>user_answer;
-  if(user_answer == 'A'||user_answer == 'N'){
-    break;
-  }
-  else
-  {
-    cout<< "Sorry, please enter the right letter for the options\n";
-  }
-  }
-    
-  if(user_answer== 'A'){
-    User_data1.printAppointedTimeSlots(user_month,user_date,user_start_hr,user_start_min,user_end_hr,user_end_min);
-    User_data1.printFreeTimeSlots(user_month,user_date,user_start_hr,user_start_min,user_end_hr,user_end_min);
-  }
-  else if(user_answer == 'N'){
-    cout<<"Processing...\n";
-  }
+  user_data[index].printAppointedTimeSlots(user_month,user_date,user_start_hr,user_start_min,user_end_hr,user_end_min);
+  user_data[index].printFreeTimeSlots(user_month,user_date);
+  
   break;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   case 4://check the status of an an appointment time slot
@@ -161,7 +174,11 @@ switch (primaryInput){
   cin >> user_month;
   cout<<"Please enter the date would you like to view: \n";
   cin >> user_date;
-  if(User_data1.isValid(user_month,user_date) == 1){
+  user_data[index].setMonth(user_month);
+  user_data[index].getMonth();
+  user_data[index].setDate(user_date);
+  user_data[index].getDate();
+  if(user_data[index].isValid(user_month,user_date) == 1){
     break;
   }
   else
@@ -224,16 +241,9 @@ switch (primaryInput){
   //////////////////////////////////////////////////////////////////////////////
 case 6://to see the whole available calendar
   calendarobject.printFreeTimeSlots_days(User_data1, user_input);
-
-  break;
-////////////////////////////////////////////////////////////////////////////////
-case 7://exit 
-
-cout <<"Thank you, we hope to see you again!\n";
-return 0;
-
+//this is OK to use 
 break;}
-
+//end of the switch statement 
 cout<<"Would you like to the main menu? 1 - YES, 0 - exit: ";
 cin>>rpt;
 } while (rpt == 1);
@@ -253,4 +263,6 @@ cin>>rpt;
     cout<<"Sorry, try again next time :(\n";
   }
   return 0;
-}
+}//the end of the program
+
+////////////////////////////////////////////// EXTRA FUNCTION TO HELP THE MAIN///
